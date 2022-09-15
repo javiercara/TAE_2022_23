@@ -16,7 +16,7 @@ output:
 Supongamos que se tiene el siguiente modelo de regresión lineal:
 
 $$
-y_i = b_0 + b_1 x_{1i} + b_2 x_{2i} + \cdots + b_k x_{ki} + e_i, \ i = 1,2,\cdots,n
+y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \cdots + \beta_k x_{ki} + e_i, \ i = 1,2,\cdots,n
 $$
 
 - El término *y_i* se conoce como *variable respuesta*, y las *x* se conocen como *regresores*.
@@ -25,11 +25,11 @@ $$
 La ecuación del modelo se puede escribir en notación matricial:
 
 $$
-i = 1 \Rightarrow y_1 = b_0 + b_1 x_{11} + b_2 x_{21} + \cdots + b_k x_{k1} + e_1
+i = 1 \Rightarrow y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{21} + \cdots + \beta_k x_{k1} + e_1
 $$
 
 $$
-i = 2 \Rightarrow y_2 = b_0 + b_1 x_{12} + b_2 x_{22} + \cdots  + b_k x_{k2} + e_2
+i = 2 \Rightarrow y_2 = \beta_0 + \beta_1 x_{12} + \beta_2 x_{22} + \cdots  + \beta_k x_{k2} + e_2
 $$
 
 $$
@@ -37,7 +37,7 @@ $$
 $$
 
 $$
-i = n \Rightarrow y_n = b_0 + b_1 x_{1n} + b_2 x_{2n} + \cdots  + b_k x_{kn} + e_n
+i = n \Rightarrow y_n = \beta_0 + \beta_1 x_{1n} + \beta_2 x_{2n} + \cdots  + \beta_k x_{kn} + e_n
 $$
 
 Agrupando:
@@ -54,7 +54,7 @@ y_1 \\ y_2 \\ \cdots \\ y_n
 1 & x_{1n} & x_{2n} & \cdots  & x_{kn} \\
 \end{bmatrix}
 \begin{bmatrix}
-b_0 \\ b_1 \\ b_2 \\ \cdots  \\ b_k
+\beta_0 \\ \beta_1 \\ \beta_2 \\ \cdots  \\ \beta_k
 \end{bmatrix}
 +
 \begin{bmatrix}
@@ -65,7 +65,7 @@ $$
 Finalmente:
 
 $$
-y = X B + e
+y = X \beta + e
 $$
 
 Esta ecuación es válida para cualquier número de regresores y cualquier número de observaciones.
@@ -73,29 +73,29 @@ Esta ecuación es válida para cualquier número de regresores y cualquier núme
 En este caso, el vector de parámetros estimados es:
 
 $$
-B
+\beta
 =
 \begin{bmatrix}
-b_0 \\ b_1 \\ b_2 \\ \cdots  \\ b_k
+\beta_0 \\ \beta_1 \\ \beta_2 \\ \cdots  \\ \beta_k
 \end{bmatrix}
 $$
 
 Los residuos, igual que en los apartados precedentes se calculan
 
 $$
-e = y - \hat y = y - X B
+e = y - \hat y = y - X \beta
 $$
 
 La suma de residuos al cuadrado será:
 
 $$
-RSS(B) = \sum e_i^2 = e^T e = y^T y - y^T X B - B^T X^T y + B^T X^T X B
+RSS(\beta) = \sum e_i^2 = e^T e = y^T y - y^T X \beta - \beta^T X^T y + \beta^T X^T X \beta
 $$
 
 El método de mínimos cuadrados consiste en minimizar dicha suma, con lo que se obtiene:
 
 $$
-B = (X^TX)^{-1}X^Ty
+\beta = (X^TX)^{-1}X^Ty
 $$
 
 Todo lo presentado en los apartados precedentes es aplicable en este caso también.
@@ -105,17 +105,17 @@ Todo lo presentado en los apartados precedentes es aplicable en este caso tambi�
 La ecuación del modelo se puede expresar como
 
 $$
-y = X B + e = \hat y + e
+y = X \beta + e = \hat y + e
 $$
 
-Es decir, los datos $y$ se descomponen en parte perteciente a la recta ($\hat y = X B$) y parte no perteneciente a la recta o residuos ($e$). Ambas se pueden calcular ahora ya que se conoce $B$. 
+Es decir, los datos $y$ se descomponen en parte perteciente a la recta ($\hat y = X \beta$) y parte no perteneciente a la recta o residuos ($e$). Ambas se pueden calcular ahora ya que se conoce $\beta$. 
 
 ## Matriz H
 
 Se define la matriz *H* como:
 
 $$
-\hat y = X B = X (X^TX)^{-1}X^T y = H y
+\hat y = X \beta = X (X^TX)^{-1}X^T y = H y
 $$
 
 La matriz $H = X (X^TX)^{-1}X^T$ se denomina en inglés *hat matrix*. Es sencillo comprobar que la matriz H es simétrica ($H^T = H$) e idempotente ($H \cdot H = H$). 
@@ -126,14 +126,14 @@ $$
 e = y - \hat y = (I-H)y
 $$
 
-Se suele utilizar para derivar resultados teóricos. Por ejemplo, utilizando esta matriz se puede demostrar que $\sum e_i^2 = y^T y - B^T (X^T y)$.
+Se suele utilizar para derivar resultados teóricos. Por ejemplo, utilizando esta matriz se puede demostrar que $\sum e_i^2 = y^T y - \beta^T (X^T y)$.
 
 ## Ortogonalidad de residuos y regresores
 
-Otra propiedad importante de los residuos es que $X^T e = 0$. Efectivamente, sustituyendo el valor de $B$ en la ecuación del modelo
+Otra propiedad importante de los residuos es que $X^T e = 0$. Efectivamente, sustituyendo el valor de $\beta$ en la ecuación del modelo
 
 $$
-y = X B + e = X (X^T X)^{-1} X^T y + e 
+y = X \beta + e = X (X^T X)^{-1} X^T y + e 
 $$
 
 Multiplicando por la izquierda por $X^T$ se obtiene
@@ -178,31 +178,31 @@ Las siguientes ecuaciones indican que el vector residuos es ortogonal a las colu
 Dada la ecuación del modelo
 
 $$
-y_i = b_0 + b_1 x_{1i} + b_2 x_{2i} + \cdots + b_k x_{ki} + e_i, \ i = 1,2,\cdots,n
+y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \cdots + \beta_k x_{ki} + e_i, \ i = 1,2,\cdots,n
 $$
 
 Si sumamos en ambos miembros desde 1 hasta *n*
 
 $$
-\sum y_i = \sum b_0 + b_1 \sum x_{1i} + b_2 \sum x_{2i} + \cdots + b_k \sum x_{ki} + \sum e_{i}
+\sum y_i = \sum \beta_0 + \beta_1 \sum x_{1i} + \beta_2 \sum x_{2i} + \cdots + \beta_k \sum x_{ki} + \sum e_{i}
 $$
 
 Teniendo en cuenta que los residuos suman cero
 
 $$
-\sum y_i = n b_0 + b_1 \sum x_{1i} + b_2 \sum x_{2i} + \cdots + b_k \sum x_{ki}
+\sum y_i = n \beta_0 + \beta_1 \sum x_{1i} + \beta_2 \sum x_{2i} + \cdots + \beta_k \sum x_{ki}
 $$
 
 Y dividiendo entre *n*
 
 $$
-\bar y = b_0 + b_1 \bar x_{1} + b_2 \bar x_{2} + \cdots + b_k \bar x_{k}
+\bar y = \beta_0 + \beta_1 \bar x_{1} + \beta_2 \bar x_{2} + \cdots + \beta_k \bar x_{k}
 $$
 
 Si a la ecuación del modelo le restamos esta última ecuación se obtiene:
 
 $$
-y_i - \bar y = b_1 (x_{1i} - \bar x_{1}) + b_2 (x_{2i} - \bar x_{2}) + \cdots + b_k (x_{ki} - \bar x_{k}) + e_i, \ i = 1,2,\cdots,n
+y_i - \bar y = \beta_1 (x_{1i} - \bar x_{1}) + \beta_2 (x_{2i} - \bar x_{2}) + \cdots + \beta_k (x_{ki} - \bar x_{k}) + e_i, \ i = 1,2,\cdots,n
 $$
 
 Estas *n* ecuaciones se pueden expresar en forma matricial de la misma forma que hicimos antes, obteniendo:
@@ -219,7 +219,7 @@ x_{12} - \bar x_{1} & x_{22} - \bar x_{2} & \cdots  & x_{k2} - \bar x_{k} \\
 x_{1n} - \bar x_{1} & x_{2n} - \bar x_{2} & \cdots  & x_{kn} - \bar x_{k} \\
 \end{bmatrix}
 \begin{bmatrix}
-b_1 \\ b_2 \\ \cdots  \\ b_k
+\beta_1 \\ \beta_2 \\ \cdots  \\ \beta_k
 \end{bmatrix}
 +
 \begin{bmatrix}
@@ -230,27 +230,27 @@ $$
 Que en este caso se expresa como
 
 $$
-\tilde y = \tilde X \tilde B + e
+y_a = X_a \beta_a + e
 $$
 
-donde $\tilde B$ es el vector de coeficientes del modelo excepto $b_0$. 
+donde $\beta_a$ es el vector de coeficientes del modelo excepto $\beta_0$. 
 
 ## Estimación del modelo utilizando matrices de covarianzas
 
-Se puede demostrar que $\tilde X^T e = 0$, por lo que
+Se puede demostrar que $X_a^T e = 0$, por lo que
 
 $$
-\tilde X^T \tilde y = \tilde X^T \tilde X \tilde B + \tilde X^T e \Rightarrow S_{Xy} = S_{XX} B^*
+X_a^T y_a = X_a^T X_a \beta_a + X_a^T e \Rightarrow S_{Xy} = S_{XX} \beta_a
 $$
 
 $$
-\tilde B = S_{XX}^{-1} S_{Xy}
+\beta_a = S_{XX}^{-1} S_{Xy}
 $$
 
 donde $S_{Xy}$ es la matriz de covarianzas de $X$ e $y$, y $S_{XX}$ es la matriz de covarianzas de $X$:
 
 $$
-S_{Xy} = \frac{1}{n-1} \tilde X^T \tilde y
+S_{Xy} = \frac{1}{n-1} X_a^T y_a
 =
 \begin{bmatrix}
 S_{1y} \\
@@ -261,7 +261,7 @@ S_{ky}
 $$
 
 $$
-S_{XX} = \frac{1}{n-1} \tilde X^T \tilde X
+S_{XX} = \frac{1}{n-1} X_a^T X_a
 =
 \begin{bmatrix}
 S_{11} & S_{21} & \cdots  & S_{k1} \\
@@ -277,9 +277,9 @@ Las ecuaciones derivadas en este apartado constituyen una alternativa para la es
 
 A modo de resumen:
 
-- Las matrices $X$ e $y$ son matrices de **datos**. Con ellas se pueden estimar los parámetros del modelo haciendo $B = (X^TX)^{-1}X^Ty$.
+- Las matrices $X$ e $y$ son matrices de **datos**. Con ellas se pueden estimar los parámetros del modelo haciendo $\beta = (X^TX)^{-1}X^Ty$.
 
-- Las matrices $S_{Xy}$ y $S_{XX}$ son matrices de **covarianzas**. Con ellas se pueden estimar los parámetros del modelo haciendo $\tilde B = S_{XX}^{-1} S_{Xy}$.
+- Las matrices $S_{Xy}$ y $S_{XX}$ son matrices de **covarianzas**. Con ellas se pueden estimar los parámetros del modelo haciendo $\beta_a = S_{XX}^{-1} S_{Xy}$.
 
 ## Aplicación a los datos
 
@@ -290,35 +290,46 @@ d = read.csv("datos/kidiq.csv")
 ```
 
 ```{r}
-y = matrix(d$kid_score, ncol = 1)
-Xa = cbind(d$mom_iq, d$mom_age) # sin columna de unos!!!!
+# en primer lugar vamos a calcular las matrices de covarianzas con la función de R cov()
+(S = cov(d))
+(Sxx = S[c(3,5),c(3,5)])
+(Sxy = S[c(3,5),1])
 ```
 
 ```{r}
-(Sxy = cov(Xa,y))
-(Sxx = cov(Xa))
+(beta_a = solve(Sxx) %*% Sxy)
+```
+
+Vamos a comprobar que las matrices de covarianzas se pueden calcular a partirde $X_a$ e $Y_a$:
+
+```{r}
+ya = matrix(d$kid_score - mean(d$kid_score), ncol = 1)
+Xa = cbind(d$mom_iq - mean(d$mom_iq), d$mom_age - mean(d$mom_age)) # sin columna de unos!!!!
 ```
 
 ```{r}
-(B_a = solve(Sxx) %*% Sxy)
+n = nrow(d)
+1/(n-1) * t(Xa) %*% Xa
+1/(n-1) * t(Xa) %*% ya
 ```
 
-Falta calcular $b_0$. Utilizamos la fórmula
+
+Falta calcular $\beta_0$. Utilizamos la fórmula
 
 $$
-b_0 = \bar y - (b_1 \bar x_{1} + b_2 \bar x_{2} + \cdots + b_k \bar x_{k})
+\beta_0 = \bar y - (\beta_1 \bar x_{1} + \beta_2 \bar x_{2} + \cdots + \beta_k \bar x_{k})
 $$
 
 ```{r}
-( beta0_e = mean(d$kid_score) - colMeans(Xa) %*% B_a )
+( beta0 = mean(d$kid_score) - colMeans(Xa) %*% beta_a )
 ```
 
 # Ejercicios propuestos
 
 1. Demostrar que la matriz H es simétrica e idempotente.
 
-2. Utilizando la matriz H demostrar que $\sum e_i^2 = y^T y - B^T (X^T y)$.
+2. Utilizando la matriz H demostrar que $\sum e_i^2 = y^T y - \beta^T (X^T y)$.
 
-3. Demostrar que $\tilde X^T e = 0$.
+3. Demostrar que $X_a^T e = 0$.
 
-4. Demostrar que $\sum e_i^2 = (n-1)s_y^2 - (n-1) \tilde B^T S_{Xy}$.
+4. Demostrar que $\sum e_i^2 = (n-1)s_y^2 - (n-1) \beta_a^T S_{Xy}$.

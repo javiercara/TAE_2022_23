@@ -25,7 +25,16 @@ output:
     c. [Modelo con K regresores](lm_modelo_Kregresores.html) [(pdf)](lm_modelo_Kregresores.pdf)
     d. [Estimación del modelo con la función lm](lm_modelo_lm.html) [(pdf)](lm_modelo_lm.pdf)
     e. [Regresores cualitativos](lm_modelo_cualitativas.html) [(pdf)](lm_modelo_cualitativas.pdf)
-
+2. Inferencia en el modelo de regresión lineal
+    a. [Estimadores y su distribución](lm_inferencia_muestreo.html) [(pdf)](lm_inferencia_muestreo.pdf)
+    b. [Intervalos de confianza](lm_inferencia_intervalos.html) [(pdf)](lm_inferencia_intervalos.pdf)
+    c. [Contraste de hipótesis](lm_inferencia_contrastes.html) [(pdf)](lm_inferencia_contrastes.pdf)
+    d. [Bootstrap](lm_inferencia_bootstrap.html) [(pdf)](lm_inferencia_bootstrap.pdf)
+9. Apéndices
+    a. [Derivada de un escalar respecto de un vector](apendice_derivadas.html) [(pdf)](apendice_derivadas.pdf)
+    b. [Matriz de covarianzas](apendice_covarianzas.html) [(pdf)](apendice_covarianzas.pdf)
+    c. [Variable aleatoria normal](apendice_normal.html) [(pdf)](apendice_normal.pdf)
+    d. [Introducción a la simulación de variables aleatorias](lm_inferencia_simulacion.html) [(pdf)](lm_inferencia_simulacion.pdf)
 
 # Bibliografía
 
