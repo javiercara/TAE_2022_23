@@ -68,6 +68,14 @@ $$
 Y|x \sim N(2+0.25x,1)
 $$
 
+$$
+E[Y|x] =  E[2+0.25x + U] = 2+0.25x
+$$
+
+$$
+Var[Y|x] =  E[2+0.25x + U] = Var[U]
+$$
+
 Vamos a comprobarlo mediante simulación. Primero vamos a simular el término de error, $U$:
 
 ```{r}
@@ -87,7 +95,7 @@ Según los visto anteriormente, para $x = 4$ se tendría que cumplir que que $Y|
 
 ```{r}
 hist(y, freq = F, main = "Histograma de Y|x=4")
-curve(dnorm(x,2 + 0.3*x ,1), col = "blue", lwd = 2, add = T)
+curve(dnorm(x,2 + 0.25*4 ,1), col = "blue", lwd = 2, add = T)
 ```
 
 La esperanza y la varianza se pueden calcular a partir de los valores simulados utilizando la **ley de los grandes números**:
@@ -100,7 +108,7 @@ s^2_y = \frac{1}{N-1} \sum (y_i - \bar{y})^2 \rightarrow Var[Y|x = 4]
 $$
 
 ```{r}
-# aproximación de 2 + 0.25*4
+# aproximación de 2 + 0.25*4 = 3
 mean(y)
 # aproximación de 1
 var(y)
@@ -112,7 +120,7 @@ Para $x = 8$ se tiene $Y|x = 8 \sim N(2+0.25*8,1)$:
 x = 8
 y = 2 + 0.25*x + u
 hist(y, freq = F, main = "Histograma de Y|X=8")
-curve(dnorm(x,2 + 0.25*x ,1), col = "blue", lwd = 2, add = T)
+curve(dnorm(x,2 + 0.25*8 ,1), col = "blue", lwd = 2, add = T)
 ```
 
 ```{r}

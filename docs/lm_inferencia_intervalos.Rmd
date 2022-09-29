@@ -67,25 +67,25 @@ $$
 Tenemos que
 
 $$
-\hat{\beta}^* \rightarrow N(\beta^*, \sigma^2 \tilde Q)
+\hat{\beta}_a \rightarrow N(\beta_a, \sigma^2 Q_a)
 $$
 
 donde
 
 $$
-\tilde Q = \frac{1}{n-1}(\tilde X^T \tilde X)^{-1}
+Q_a = \frac{1}{n-1}S_{XX}^{-1}
 $$ 
 
 Esto implica que:
 
 $$
-\hat \beta_i \rightarrow N(\beta_i, \sigma^2 \tilde{Q}_{i,i}), \quad i = 1,2, \ldots,k
+\hat \beta_i \rightarrow N(\beta_i, \sigma^2 Q_{a(i,i)}), \quad i = 1,2, \ldots,k
 $$
 
-donde $\tilde{Q}_{i,j}$ es el elemento *(i,j)* de la matriz $\tilde Q$. Por tanto, siguiendo el razonamiento del apartado anterior:
+donde $Q_{a(i,j)}$ es el elemento *(i,j)* de la matriz $Q_a$. Por tanto, siguiendo el razonamiento del apartado anterior:
 
 $$
-se(\hat \beta_i) = \sqrt{ \hat s_R^2 \hat{Q}_{i,i}}, \quad i = 1,2,\cdots,k
+se(\hat \beta_i) = \sqrt{ \hat s_R^2 Q_{a(i,i)}}, \quad i = 1,2,\cdots,k
 $$
 
 Para $\hat \beta_0$ tenemos que

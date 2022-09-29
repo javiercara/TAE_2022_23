@@ -287,19 +287,19 @@ div.tocify {
 <h2><span class="header-section-number">2.2</span> Con matrices de covarianzas</h2>
 <p>Tenemos que</p>
 <p><span class="math display">\[
-\hat{\beta}^* \rightarrow N(\beta^*, \sigma^2 \tilde Q)
+\hat{\beta}_a \rightarrow N(\beta_a, \sigma^2 Q_a)
 \]</span></p>
 <p>donde</p>
 <p><span class="math display">\[
-\tilde Q = \frac{1}{n-1}(\tilde X^T \tilde X)^{-1}
+Q_a = \frac{1}{n-1}S_{XX}^{-1}
 \]</span></p>
 <p>Esto implica que:</p>
 <p><span class="math display">\[
-\hat \beta_i \rightarrow N(\beta_i, \sigma^2 \tilde{Q}_{i,i}), \quad i = 1,2, \ldots,k
+\hat \beta_i \rightarrow N(\beta_i, \sigma^2 Q_{a(i,i)}), \quad i = 1,2, \ldots,k
 \]</span></p>
-<p>donde <span class="math inline">\(\tilde{Q}_{i,j}\)</span> es el elemento <em>(i,j)</em> de la matriz <span class="math inline">\(\tilde Q\)</span>. Por tanto, siguiendo el razonamiento del apartado anterior:</p>
+<p>donde <span class="math inline">\(Q_{a(i,j)}\)</span> es el elemento <em>(i,j)</em> de la matriz <span class="math inline">\(Q_a\)</span>. Por tanto, siguiendo el razonamiento del apartado anterior:</p>
 <p><span class="math display">\[
-se(\hat \beta_i) = \sqrt{ \hat s_R^2 \hat{Q}_{i,i}}, \quad i = 1,2,\cdots,k
+se(\hat \beta_i) = \sqrt{ \hat s_R^2 Q_{a(i,i)}}, \quad i = 1,2,\cdots,k
 \]</span></p>
 <p>Para <span class="math inline">\(\hat \beta_0\)</span> tenemos que</p>
 <p><span class="math display">\[

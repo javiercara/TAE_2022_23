@@ -30,11 +30,18 @@ output:
     b. [Intervalos de confianza](lm_inferencia_intervalos.html) [(pdf)](lm_inferencia_intervalos.pdf)
     c. [Contraste de hipótesis](lm_inferencia_contrastes.html) [(pdf)](lm_inferencia_contrastes.pdf)
     d. [Bootstrap](lm_inferencia_bootstrap.html) [(pdf)](lm_inferencia_bootstrap.pdf)
+3. Aplicaciones del modelo de regresión lineal
+    a. [Cálculo de predicciones](lm_aplicaciones_prediccion.html) [(pdf)](lm_aplicaciones_prediccion.pdf)
+    b. [Análisis de las relaciones entre variables](lm_aplicaciones_explicacion.html) [(pdf)](lm_aplicaciones_explicacion.pdf)
+4. Diagnosis
+    a. [Análisis de los residuos del modelo](lm_diagnosis.html) [(pdf)](lm_diagnosis.pdf)
+5. Ejemplo
+    a. [Ejemplo completo de regresión lineal](lm_ejemplo1.html) [(pdf)](lm_ejemplo1.pdf)
 9. Apéndices
     a. [Derivada de un escalar respecto de un vector](apendice_derivadas.html) [(pdf)](apendice_derivadas.pdf)
     b. [Matriz de covarianzas](apendice_covarianzas.html) [(pdf)](apendice_covarianzas.pdf)
     c. [Variable aleatoria normal](apendice_normal.html) [(pdf)](apendice_normal.pdf)
-    d. [Introducción a la simulación de variables aleatorias](lm_inferencia_simulacion.html) [(pdf)](lm_inferencia_simulacion.pdf)
+    d. [Introducción a la simulación de variables aleatorias](apendice_simulacion.html) [(pdf)](apendice_simulacion.pdf)
 
 # Bibliografía
 

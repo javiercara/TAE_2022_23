@@ -39,7 +39,7 @@ $$
 La varianza de este estadístico tiene solución teórica:
 
 $$
-Var(\bar X) = \frac{\sigma^2}{12}
+Var(\bar X) = \frac{\sigma^2}{n} = \frac{\sigma^2}{12}
 $$
 
 Como $\sigma^2$ no es conocido esta varianza no se puede calcular. sin embargo, se puede aproximar utilizando el estimador de $\sigma^2$, la varianza de la muestra $s^2_x$:
@@ -126,14 +126,12 @@ quantile(medianas, c(alfa/2, 1-alfa/2))
 
 # Bootstrap en el modelo de regresión
 
-La hipótesis fundamental para poder aplicar bootstrap es que los datos tienen que ser independientes. En el caso del modelo de regresión, la opción es muestrear los residuos ya que son independientes. El método consiste en:
+Para el modelo de regresión el método consiste en:
 
-- Paso 1: estimar el modelo de regresión $y = X \hat \beta + e$ y calcular los residuos: $\{e_1, e_2, \cdots, e_n\}$.
-- Paso 2: generar, mediante simulación, una muestra con reemplazamiento a partir de $\{e_1, e_2, \cdots, e_n\}$ que llamaremos $\{e_1^*, e_2^*, \cdots, e_n^*\}$.
-- Paso 3: generar, a partir de los residuos bootstrap, una replica bootstrap de los datos: $y^* = X \hat \beta + e^*$.
-- Paso 4: estimar los parámetros del modelo a partir de la muestra bootstrap $y^* = X \hat \beta^* + e$.
-- Paso 5: Repetir los pasos 2, 3 y 4 un total de B veces, obteniendo $\beta_1^{*},\beta_2^{*}, \ldots,\beta_B^{*}$.
-- Paso 6: calcular la varianza de los estimadores o los intervalos de confianza de los parámetros a partir de los valores calculados en el paso 5.
+- Paso 1: generar una muestra con reemplazamiento de los pares de datos que llamaremos $\{(y_1^*,x_{11}^*, \ldots,x_{k1}^*), (y_2^*,x_{12}^*, \ldots,x_{k2}^*), \cdots, (y_n^*,x_{1n}^*, \ldots,x_{kn}^*) \}$.
+- Paso 2: estimar los parámetros del modelo a partir de la muestra bootstrap $y^* = X^* \hat \beta^* + e^*$.
+- Paso 3: Repetir los pasos 1 y 2 un total de B veces, obteniendo $\beta_1^{*},\beta_2^{*}, \ldots,\beta_B^{*}$.
+- Paso 4: calcular la varianza de los estimadores o los intervalos de confianza de los parámetros a partir de los valores calculados en el paso 3.
 
 Por ejemplo, vamos a calcular la varianza de los estimadores y los intervalos de confianza para el modelo:
 
@@ -143,23 +141,21 @@ d$mom_hs = factor(d$mom_hs, labels = c("no", "si"))
 ```
 
 ```{r}
+# estimamos los parametros del modelo
 m1 = lm(kid_score ~ mom_iq + mom_hs, data = d)
 beta_e = coef(m1)
 ```
 
 ```{r}
 # BOOTSTRAP
-# residuos
-e = resid(m1)
-# matrix de las X
-X = model.matrix(m1)
-# muestreamos los residuos CON REPOSICION
+# muestreamos los datos CON REPOSICION
+n = nrow(d)
 B = 1000
 beta_e_b = matrix(0, nrow = B, ncol = 3)
 for (i in 1:B){
-  eb = sample(e, rep = T)
-  yb = X %*% beta_e + eb
-  mb = lm(yb ~ mom_iq + mom_hs, data = d)
+  pos = sample(1:n, rep = T)
+  db = d[pos,]
+  mb = lm(kid_score ~ mom_iq + mom_hs, data = db)
   beta_e_b[i,] = coef(mb)
 }
 ```
