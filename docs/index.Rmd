@@ -37,6 +37,15 @@ output:
     a. [Análisis de los residuos del modelo](lm_diagnosis.html) [(pdf)](lm_diagnosis.pdf)
 5. Ejemplo
     a. [Ejemplo completo de regresión lineal](lm_ejemplo1.html) [(pdf)](lm_ejemplo1.pdf)
+6. Extensiones del modelo lineal
+    a. [Regresores polinómicos](lm_extensiones_polinomios.html) [(pdf)](lm_extensiones_polinomios.pdf)
+    b. [Splines](lm_extensiones_splines.html) [(pdf)](lm_extensiones_splines.pdf)
+    c. [Modelos Aditivos](lm_extensiones_modelosAditivos.html) [(pdf)](lm_extensiones_modelosAditivos.pdf)
+    d. [Regresión local](lm_extensiones_regresionLocal.html) [(pdf)](lm_extensiones_regresiónLocal.pdf)
+7. Validación cruzada
+    a. [Validación cruzada](lm_validacion_cruzada.html) [(pdf)](lm_validacion_cruzada.pdf)
+8. Comparación de modelos y selección de variables
+    a. [Comparación de modelos y selección de variables](lm_seleccion_variables.html) [(pdf)](lm_seleccion_variables.pdf)    
 9. Apéndices
     a. [Derivada de un escalar respecto de un vector](apendice_derivadas.html) [(pdf)](apendice_derivadas.pdf)
     b. [Matriz de covarianzas](apendice_covarianzas.html) [(pdf)](apendice_covarianzas.pdf)
