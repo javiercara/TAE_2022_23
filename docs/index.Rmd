@@ -41,7 +41,7 @@ output:
     a. [Regresores polinómicos](lm_extensiones_polinomios.html) [(pdf)](lm_extensiones_polinomios.pdf)
     b. [Splines](lm_extensiones_splines.html) [(pdf)](lm_extensiones_splines.pdf)
     c. [Modelos Aditivos](lm_extensiones_modelosAditivos.html) [(pdf)](lm_extensiones_modelosAditivos.pdf)
-    d. [Regresión local](lm_extensiones_regresionLocal.html) [(pdf)](lm_extensiones_regresiónLocal.pdf)
+    d. [Regresión local](lm_extensiones_regresionLocal.html) [(pdf)](lm_extensiones_regresionLocal.pdf)
 7. Validación cruzada
     a. [Validación cruzada](lm_validacion_cruzada.html) [(pdf)](lm_validacion_cruzada.pdf)
 8. Comparación de modelos y selección de variables
@@ -62,7 +62,7 @@ output:
     c. [Regresores cualitativos](logit_modelo_cualitativas.html) [(pdf)](logit_modelo_cualitativas.pdf)
 2. Inferencia en el modelo de regresión logística
     a. [Estimadores y su distribución. Inferencia](logit_inferencia.html) [(pdf)](logit_inferencia.pdf)
-    b. [Bootstrap](logit_inferencia_bootstrap.html) [(pdf)](logit_bootstrap_bootstrap.pdf)
+    b. [Bootstrap](logit_inferencia_bootstrap.html) [(pdf)](logit_inferencia_bootstrap.pdf)
 3. Aplicaciones del modelo de regresión lineal
     a. [Cálculo de predicciones](logit_aplicaciones_prediccion.html) [(pdf)](logit_aplicaciones_prediccion.pdf)
     b. [Análisis de las relaciones entre variables](logit_aplicaciones_explicacion.html) [(pdf)](logit_aplicaciones_explicacion.pdf)
