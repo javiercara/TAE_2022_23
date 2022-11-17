@@ -295,7 +295,7 @@ pred_y[pred_prob &gt; 0.5] = 1
 ##      0  1
 ##   0 81  9
 ##   1 20 54</code></pre>
-<p>Por tanto, se han predicho bien 81 + 54 = 135 datos de un todal de 164. Se han mal bien 9 + 20 = 29 datos de un todal de 164. El error del modelo es 29 / 164 = 17.68%.</p>
+<p>Por tanto, se han predicho bien 81 + 54 = 135 datos de un todal de 164. Se han predicho mal 9 + 20 = 29 datos de un todal de 164. El error del modelo es 29 / 164 = 17.68%.</p>
 <p>Cuando el objetivo de principal de la regresión logística sea la predicción, la bondad del modelo se puede calcular construyendo la matriz de confusión en un test set:</p>
 <pre class="r"><code>set.seed(123)
 pos_train = sample(1:n, round(0.8*n), replace = F)
@@ -361,7 +361,7 @@ summary(m0)</code></pre>
 <pre><code>## [1] 225.7888</code></pre>
 <pre class="r"><code>(R2 = 1 - D1/D0)</code></pre>
 <pre><code>## [1] 0.3427622</code></pre>
-<p>Si <span class="math inline">\(R^2 \approx 1\)</span> el modelo se ajusta muy bien a los datos.</p>
+<p>Si <span class="math inline">\(R^2 \approx 1\)</span> el modelo se ajusta muy bien a los datos, y <span class="math inline">\(R^2 \approx 0\)</span> implica un mal ajuste. Es decir, <span class="math inline">\(R^2 \approx 0\)</span> significa que la verosimilitud de ambos modelos es muy parecida, luego <span class="math inline">\(\beta_1 \approx \beta_2 \approx \beta_k \approx 0\)</span>.</p>
 </div>
 <div id="contraste-para-un-grupo-de-coeficientes" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Contraste para un grupo de coeficientes</h1>

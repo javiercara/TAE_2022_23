@@ -297,9 +297,23 @@ summary(m1)</code></pre>
 <p>Los pvalores para <span class="math inline">\(\beta_1\)</span> y <span class="math inline">\(\beta_2\)</span> son menores que 0.05, por lo que son distintas de cero, luego hay diferencias en la probabilidad de supervivencia. Como <span class="math inline">\(\hat \beta_1\)</span> = 1.664344 &gt; 0, la probabilidad de supervivencia de la primera clase es mayor que la de la tripulación; lo mismo para la segunda clase.</p>
 <p>El pvalor de <span class="math inline">\(\beta_3\)</span> es mayor que 0.05, luego <span class="math inline">\(\beta_3 = 0\)</span>, no hay diferencias entre tripulación y tercera clase.</p>
 <p>Estos resultados se pueden comprobar numéricamente:</p>
-<pre class="r"><code>predict(m1, newdata = data.frame(Class = c(&quot;Crew&quot;, &quot;First&quot;, &quot;Second&quot;, &quot;Third&quot;)), type = &quot;response&quot;)</code></pre>
+<pre class="r"><code>(predP = predict(m1, newdata = data.frame(Class = c(&quot;Crew&quot;, &quot;First&quot;, &quot;Second&quot;, &quot;Third&quot;)), type = &quot;response&quot;))</code></pre>
 <pre><code>##         1         2         3         4 
 ## 0.2395480 0.6246154 0.4140351 0.2521246</code></pre>
+<p>con intervalos de confianza</p>
+<pre class="r"><code>predL = predict(m1, newdata = data.frame(Class = c(&quot;Crew&quot;, &quot;First&quot;, &quot;Second&quot;, &quot;Third&quot;)), type = &quot;link&quot;, se.fit = T)
+#
+alfa = 0.05
+Lp = predL$fit - qnorm(1-alfa/2)*predL$se.fit
+Up = predL$fit + qnorm(1-alfa/2)*predL$se.fit
+#
+data.frame(pred = predP, confintL = exp(Lp)/(1+exp(Lp)), confintP = exp(Up)/(1+exp(Up)))</code></pre>
+<pre><code>##        pred  confintL  confintP
+## 1 0.2395480 0.2125668 0.2687850
+## 2 0.6246154 0.5706887 0.6756185
+## 3 0.4140351 0.3582390 0.4721282
+## 4 0.2521246 0.2214588 0.2854798</code></pre>
+<p>Donde podemos comprobar que algunos intervalos se solapan y otros no.</p>
 </div>
 <div id="probabilidad-de-supervivencia-de-primera-y-segunda-clase" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Probabilidad de supervivencia de primera y segunda clase</h2>
@@ -413,7 +427,7 @@ P(Y_i = 1) = \frac{exp(\beta_0 + \beta_1 F_i  + \beta_2 S_i  + \beta_3 T_i  + \b
 <p><span class="math display">\[
 P(Y_i = 1) = \frac{exp(\beta_0)}{1 + exp(\beta_0)}
 \]</span></p>
-<p>Para mujeres de tercera clase, por ekemplo, F = 0, S = 0, T = 1, M = 1. Por tanto el modelo es:</p>
+<p>Para mujeres de tercera clase, por ejemplo, F = 0, S = 0, T = 1, M = 0. Por tanto el modelo es:</p>
 <p><span class="math display">\[
 P(Y_i = 1) = \frac{exp(\beta_0 + \beta_3 )}{1 + exp(\beta_0 + \beta_3 )}
 \]</span></p>
@@ -445,8 +459,8 @@ se(\hat \beta_3 + \hat \beta_7) = \sqrt{V_{44} + V_{88} + 2V_{48}} \\
 V = Var(\hat \beta)
 \]</span></p>
 <pre class="r"><code>source(&quot;logit_funciones.R&quot;)
-h = logit_hess(coef(m3), model.matrix(m3))
-V = -solve(h)
+H = logit_hess(coef(m3), model.matrix(m3))
+V = -solve(H)
 (se = sqrt(V[4,4] + V[8,8] + 2*V[4,8]))</code></pre>
 <pre><code>## [1] 0.1429482</code></pre>
 <p>El estadístico se reescribe como</p>

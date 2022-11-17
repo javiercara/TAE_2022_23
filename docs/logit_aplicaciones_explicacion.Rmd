@@ -1,13 +1,13 @@
 ---
 title: "Aplicaciones del modelo de regresión logística: analisis de relaciones entre variables"
 output: 
-  pdf_document:
-    number_sections: true
-    toc: true
   html_document:
     number_sections: true
     toc: true
     toc_float: true
+  pdf_document:
+    number_sections: true
+    toc: true
 ---
 
 # Datos
@@ -46,8 +46,22 @@ El pvalor de $\beta_3$ es mayor que 0.05, luego $\beta_3 = 0$, no hay diferencia
 Estos resultados se pueden comprobar numéricamente:
 
 ```{r}
-predict(m1, newdata = data.frame(Class = c("Crew", "First", "Second", "Third")), type = "response")
+(predP = predict(m1, newdata = data.frame(Class = c("Crew", "First", "Second", "Third")), type = "response"))
 ```
+
+con intervalos de confianza
+
+```{r}
+predL = predict(m1, newdata = data.frame(Class = c("Crew", "First", "Second", "Third")), type = "link", se.fit = T)
+#
+alfa = 0.05
+Lp = predL$fit - qnorm(1-alfa/2)*predL$se.fit
+Up = predL$fit + qnorm(1-alfa/2)*predL$se.fit
+#
+data.frame(pred = predP, confintL = exp(Lp)/(1+exp(Lp)), confintP = exp(Up)/(1+exp(Up)))
+```
+
+Donde podemos comprobar que algunos intervalos se solapan y otros no.
 
 ## Probabilidad de supervivencia de primera y segunda clase
 
@@ -96,7 +110,7 @@ $$
 P(Y_i = 1) = \frac{exp(\beta_0)}{1 + exp(\beta_0)}
 $$
 
-Para mujeres de tercera clase, por ekemplo, F = 0, S = 0, T = 1, M = 1. Por tanto el modelo es:
+Para mujeres de tercera clase, por ejemplo, F = 0, S = 0, T = 1, M = 0. Por tanto el modelo es:
 
 $$
 P(Y_i = 1) = \frac{exp(\beta_0 + \beta_3 )}{1 + exp(\beta_0 + \beta_3 )}
@@ -142,8 +156,8 @@ $$
 
 ```{r}
 source("logit_funciones.R")
-h = logit_hess(coef(m3), model.matrix(m3))
-V = -solve(h)
+H = logit_hess(coef(m3), model.matrix(m3))
+V = -solve(H)
 (se = sqrt(V[4,4] + V[8,8] + 2*V[4,8]))
 ```
 

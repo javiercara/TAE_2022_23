@@ -34,7 +34,7 @@ pred_y[pred_prob > 0.5] = 1
 (t = table(d$InMichelin, pred_y))
 ```
 
-Por tanto, se han predicho bien `r t[1,1]` + `r t[2,2]` = `r t[1,1] + t[2,2]` datos de un todal de `r n`. Se han mal bien `r t[1,2]` + `r t[2,1]` = `r t[1,2] + t[2,1]` datos de un todal de `r n`. El error del modelo es `r t[1,2] + t[2,1]` / `r n` = `r round((t[1,2] + t[2,1])/n*100,2)`%.
+Por tanto, se han predicho bien `r t[1,1]` + `r t[2,2]` = `r t[1,1] + t[2,2]` datos de un todal de `r n`. Se han predicho mal `r t[1,2]` + `r t[2,1]` = `r t[1,2] + t[2,1]` datos de un todal de `r n`. El error del modelo es `r t[1,2] + t[2,1]` / `r n` = `r round((t[1,2] + t[2,1])/n*100,2)`%.
 
 Cuando el objetivo de principal de la regresión logística sea la predicción, la bondad del modelo se puede calcular construyendo la matriz de confusión en un test set:
 
@@ -99,7 +99,7 @@ summary(m0)
 (R2 = 1 - D1/D0)
 ```
 
-Si $R^2 \approx 1$ el modelo se ajusta muy bien a los datos.
+Si $R^2 \approx 1$ el modelo se ajusta muy bien a los datos, y $R^2 \approx 0$ implica un mal ajuste. Es decir, $R^2 \approx 0$ significa que la verosimilitud de ambos modelos es muy parecida, luego $\beta_1 \approx \beta_2 \approx \beta_k \approx 0$.
 
 # Contraste para un grupo de coeficientes
 

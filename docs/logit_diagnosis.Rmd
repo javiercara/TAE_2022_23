@@ -26,7 +26,7 @@ $$
 
 El gráfico de los residuos de Pearson frente a los valores previstos, $\hat{\pi}_i$, mostrará los datos siguiendo dos curvas: 
 
-- los puntos con y = 0 estarán en $r_i = \frac{\hat{\pi}_i}{\sqrt{\hat{\pi}_i(1-\hat{\pi}_i)}}$.
+- los puntos con y = 0 estarán en $r_i = \frac{\hat{-\pi}_i}{\sqrt{\hat{\pi}_i(1-\hat{\pi}_i)}}$.
 - los puntos con y = 1 estarán en $r_i = \frac{1-\hat{\pi}_i}{\sqrt{\hat{\pi}_i(1-\hat{\pi}_i)}}$.
 
 El análisis de estos gráficos no es tan directo como en el caso de regresión lineal, ya que los datos seguirán esas curvas independientemente de si el modelo es adecuado o no. 
@@ -53,9 +53,9 @@ plot(pi_e,ri)
 Se observa que hay un dato con comportamiento diferente al resto. 
 
 ```{r}
-pos = which.max(ri)
+pos = which.min(ri)
 d[pos,]
 ```
 
-Se trata del restaurante Paradou, que a pesar de tener puntuaciones muy bajas está incluido en la Guía Michelín.
+Se trata del restaurante Atelier, que a pesar de tener puntuaciones altas no está incluido en la Guía Michelín.
 
