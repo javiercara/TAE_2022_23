@@ -15,49 +15,18 @@ output:
 Se estima el siguiente modelo de regresión logística:
 
 ```{r}
-d = read.csv("datos/MichelinNY.csv")
-m1 = glm(InMichelin ~ Food + Decor + Service + Price, data = d, family = binomial)
+d = read.csv("datos/Aircraft_Damage.csv")
+d$bomber = factor(d$bomber, labels = c("A4","A6"))
+m1 = glm(damage ~ bomber + load + experience, data = d, family = poisson)
 summary(m1)
 ```
+
 El objetivo es analizar como de bueno es el modelo de regresión logística que se ha estimado.
 
-# Criterio de la matriz de confusión
 
-El método más sencillo es calcular el error de predicción del modelo en la base de datos. Esto se hace con la matriz de confusión.
+# R-cuadrado en regresión de Poisson
 
-```{r}
-pred_prob = predict(m1, newdata = d, type = "response")
-n = nrow(d)
-pred_y = rep(0, n)
-pred_y[pred_prob > 0.5] = 1
-# matriz de confusion
-(t = table(d$InMichelin, pred_y))
-```
-
-Por tanto, se han predicho bien `r t[1,1]` + `r t[2,2]` = `r t[1,1] + t[2,2]` datos de un todal de `r n`. Se han predicho mal `r t[1,2]` + `r t[2,1]` = `r t[1,2] + t[2,1]` datos de un todal de `r n`. El error del modelo es `r t[1,2] + t[2,1]` / `r n` = `r round((t[1,2] + t[2,1])/n*100,2)`%.
-
-Cuando el objetivo de principal de la regresión logística sea la predicción, la bondad del modelo se puede calcular construyendo la matriz de confusión en un test set:
-
-```{r}
-set.seed(123)
-pos_train = sample(1:n, round(0.8*n), replace = F)
-train = d[pos_train,]
-test = d[-pos_train,]
-```
-
-```{r}
-m2 = glm(InMichelin ~ Food + Decor + Service + Price, data = train, family = binomial)
-test_prob = predict(m2, newdata = test, type = "response")
-n_test = nrow(test)
-pred_y = rep(0, n_test)
-pred_y[test_prob > 0.5] = 1
-# matriz de confusion
-(t = table(test$InMichelin, pred_y))
-```
-
-# R-cuadrado en regresión logística
-
-Otra manera de calcular la bondad del modelo es definir un $R^2$ de manera similar a como se hizo en regresión lineal. Se han propuesto muchas formas de definir este $R^2$, pero quizá la más usada es:
+Se puede definir un $R^2$ de manera similar a como se hizo en regresión lineal. La manera habitual es:
 
 $$
 R^2 = 1 - \frac{D_1}{D_0}
@@ -69,11 +38,11 @@ D = |2logL(\hat \beta)|
 $$
 
 $$
-log L(\hat \beta) = \sum_{i=1}^{n}(y_i log \hat \pi_i +  (1-y_i) log(1 - \hat \pi_i))
+log L(\hat \beta) = \sum_{i=1}^{n}(-\lambda_i + y_i log(\lambda_i) - log(y_i!))
 $$
 
 $$
-\hat \pi_i = \frac{exp(x_i^T \hat \beta)}{1 + exp(x_i^T \hat \beta)}
+\lambda_i = exp(x_i^T \beta)
 $$
 
 Se definen dos desviaciones:
@@ -82,17 +51,17 @@ Se definen dos desviaciones:
 - D0: la desviación del modelo en el que solo se estima $\beta_0$.
 
 ```{r}
-source("funciones/logit_funciones.R")
-(D1 = abs(2*logit_logL(coef(m1),d$InMichelin,model.matrix(m1))) )
+source("funciones/poisson_funciones.R")
+(D1 = abs(2*poisson_logL(coef(m1),d$damage,model.matrix(m1))) )
 ```
 
 ```{r}
-m0 = glm(InMichelin ~ 1, data = d, family = binomial)
+m0 = glm(damage ~ 1, data = d, family = poisson)
 summary(m0)
 ```
 
 ```{r}
-(D0 = abs(2*logit_logL(coef(m0),d$InMichelin,model.matrix(m0))) )
+(D0 = abs(2*poisson_logL(coef(m0),d$damage,model.matrix(m0))) )
 ```
 
 ```{r}
@@ -106,11 +75,11 @@ Si $R^2 \approx 1$ el modelo se ajusta muy bien a los datos, y $R^2 \approx 0$ i
 Supongamos que tenemos dos modelos:
 
 $$
-\pi_i = \frac{exp(x_i^T \beta)}{1 + exp(x_i^T \beta)}
+\lambda_i = exp(x_i^T \beta)
 $$
 
 $$
-\pi_{Ai} = \frac{exp(x_{Ai}^T \beta_A)}{1 + exp(x_{Ai}^T \beta_A)}
+\lambda_{A,i} = exp(x_{A,i}^T \beta_A)
 $$
 
 donde $\beta_A$ es un subconjunto de $\beta$. Supongamos que $dim(\beta_A) = m$ y $dim(\beta) = k$, con $m<k$. Si $\beta_B$ representa los parámetros que están en $\beta$ pero no están en $\beta_A$, se puede resolver el siguiente contraste:
@@ -130,11 +99,11 @@ donde $D_1$ es la desviación del modelo con parámetros $\beta$ y $D_A$ es la d
 
 Es decir, valores grandes del estadístico significa que la verosimilitud de ambos modelos es muy diferente, luego $\beta_B \neq 0$. Para valores pequeños de G, ambos modelos son muy parecidos, luego los regresores $\beta_B$ no aportan nada al modelo, es decir, $\beta_B = 0$.
 
-Por ejemplo, queremos resolver el contraste con hipótesis nula $\beta_1 = \beta_2 = 0$:
+Por ejemplo, queremos resolver el contraste con hipótesis nula $\beta_2 = \beta_3 = 0$:
 
 ```{r}
-mA = glm(InMichelin ~ Service + Price, data = d, family = binomial)
-(DA = abs(2*logit_logL(coef(mA),d$InMichelin,model.matrix(mA))) )
+mA = glm(damage ~ bomber, data = d, family = poisson)
+(DA = abs(2*poisson_logL(coef(mA),d$damage,model.matrix(mA))) )
 (G = DA - D1)
 # valor crítico del contraste
 k = length(coef(m1))

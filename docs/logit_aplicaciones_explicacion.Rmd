@@ -150,8 +150,7 @@ $$
 donde 
 
 $$
-se(\hat \beta_3 + \hat \beta_7) = \sqrt{V_{44} + V_{88} + 2V_{48}} \\
-V = Var(\hat \beta)
+se(\hat \beta_3 + \hat \beta_7) = \sqrt{Var(\hat \beta_3) + Var(\hat \beta_7) + 2 Cov(\hat \beta_3,\hat \beta_7)}
 $$
 
 ```{r}
