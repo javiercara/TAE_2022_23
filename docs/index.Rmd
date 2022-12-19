@@ -88,10 +88,14 @@ output:
 1. Árboles de regresión
     a. [Arbol con un regresor](tree_regresion_1regresor.html) [(pdf)](tree_regresion_1regresor.pdf)
     b. [Arbol con K regresores](tree_regresion_Kregresores.html) [(pdf)](tree_regresion_Kregresores.pdf)
-2. Árboles de clasificación
-    a. [Árboles de clasificación](tree_clasificacion.html) [(pdf)](tree_clasificacion.pdf) 
-3. Random Forest   
+2. Random Forest   
     a. [Random Forest](tree_RandomForest.html) [(pdf)](tree_RandomForest.pdf)
+3. Árboles de clasificación
+    a. [Árboles de clasificación](tree_clasificacion.html) [(pdf)](tree_clasificacion.pdf) 
+    
+## K - Nearest Neighbours
+1. [KNN para clasificiación](knn_clasificiacion.html) [(pdf)](knn_clasificacion.pdf) 
+2. [KNN para regresión](knn_regresion.html) [(pdf)](knn_regresion.pdf) 
 
 # Bibliografía
 

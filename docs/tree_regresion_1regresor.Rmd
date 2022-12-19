@@ -92,7 +92,7 @@ control:
 - minsplit: número mínimo de observaciones del nodo para que se divida en dos (por defecto, minsplit = 20).
 - minbucket: número mínimo de observaciones en un nodo terminal u hoja (por defecto, minbucket = minsplit/3).
 - maxdepth: se fija el nivel máximo de cualquier nodo del árbol, siendo 0 el nivel del nodo raiz.
-- cp: complexity parameter. En árboles de regresión, para que un nodo se divida, el R2 tiene que incrementarse en más de cp (por defecto, cp = 0.01). En este caso: [RSS(padre) - RSS(hijo1) - RSS(hijo2)]/RSS(raiz) > cp
+- cp: complexity parameter. En árboles de regresión, para que un nodo se divida, el R2 tiene que incrementarse en más de una cantidad data. En este caso: [RSS(padre) - RSS(hijo1) - RSS(hijo2)]/RSS(raiz) > cp (por defecto, cp = 0.01).
 - xval: número de validaciones cruzadas. Se utiliza para el podado.
 
 ```{r}
@@ -105,7 +105,7 @@ print(t2)
 (118793.70 - 58829.52 - 48941.98)/180386.20
 ```
 
-- que es mayor que el límite cp = 0.05.
+- que es mayor que el límite cp = 0.01.
 
 - Podemos construir un arbol más *profundo*:
 
@@ -173,11 +173,11 @@ t4_printcp = printcp(t4) # lo guardamos en una variable para utilizarlo despues
 ```
 
 - Salida de printcp():
-    - col3: numero de divisiones del arbol obtenido. Numero de hojas = numero divisiones + 1
     - col2: el valor de cp que hay que utilizar para obtener ese árbol
-    - col3: error relativo del arbol podado, RSS/TSS
-    - col4: error relativo calculado con validación cruzada.
-    - col5: desviación típica de xerror
+    - col3: numero de divisiones del arbol obtenido. Numero de hojas = numero divisiones + 1
+    - col4: error relativo del arbol podado, RSS/TSS
+    - col5: error relativo calculado con validación cruzada.
+    - col6: desviación típica de xerror
 - También se puede utilizar plotcp():
 
 ```{r}

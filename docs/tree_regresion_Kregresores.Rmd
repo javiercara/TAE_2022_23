@@ -147,7 +147,7 @@ plot(t4_prune, margin = 0.02)
 text(t4_prune, cex=.75)
 ```
 
-Ojo, estamos seleccionando el arbol con mayor R2 de acuerdo a validación cruzada (variable xerror). Si nos fijamos en el árbol con menor error de acuerdo a la variable *rel error* tendríamos que elegir el árbol de 20hojas!
+Ojo, estamos seleccionando el arbol con mayor R2 de acuerdo a validación cruzada (variable xerror). Si nos fijamos en el árbol con menor error de acuerdo a la variable *rel error* tendríamos que elegir el árbol de 45 hojas!
 
 
 # Prediccion

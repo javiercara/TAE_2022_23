@@ -1,13 +1,13 @@
 ---
 title: "Random Forests"
 output:
-  pdf_document:
-    number_sections: yes
-    toc: yes
   html_document:
     number_sections: yes
     toc: yes
     toc_float: yes
+  pdf_document:
+    number_sections: yes
+    toc: yes
 ---
 
 # Lectura de datos
@@ -130,7 +130,7 @@ rf4 = randomForest(kid_score ~ ., data = datos_train, mtry = 4, ntree = 500, imp
 importance(rf4)
 ```
 
-- %IncMSE: descenso de la calidad de las predicciones realizadas en los datos *out of samples* cuando los valores de una variable dada se permutan aleatoriamente (sería como quitarla del modelo).
+- %IncMSE: incremento del MSE de las predicciones calculadas en los datos *out of samples* cuando los valores de una variable dada se permutan aleatoriamente (sería como quitarla del modelo). Cuando más grande es IncMSE, más importante es la variable. 
 
 - IncNodePurity: suma del descenso acumulado del RSS al partir por dicha variable.
 

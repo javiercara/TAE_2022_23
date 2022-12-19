@@ -1,13 +1,13 @@
 ---
 title: "Árboles de clasificación"
 output:
-  pdf_document:
-    number_sections: yes
-    toc: yes
   html_document:
     number_sections: yes
     toc: yes
     toc_float: yes
+  pdf_document:
+    number_sections: yes
+    toc: yes
 ---
 
 
@@ -64,7 +64,7 @@ G = \sum _{k=1}^K p_k(1-p_k)
 $$
 
 - donde K es el numero de clases (3 en nuestro ejemplo) y $p_k$ es la proporción de datos pertenecientes a cada clase. Cuanto más pequeño es G, más homogéneo es un nodo. Por ejemplo, si todos los datos pertenecen a la misma clase, $p_k = 1$, G = 0.
-- Por ejemplo, en el nodo 2) de la tabla anterior, $G = 0.8214*(1-0.8214) + 0.1786*(1-0.1786) + 0) = 0.29$.
+- Por ejemplo, en el nodo 2) de la tabla anterior, $G = 0.9032*(1-0.9032) + 0.0967*(1-0.0967) + 0 = 0.17$.
 - En la tabla se devuelve el criterio por el que se divide el nodo, el numero de datos del nodo, el numero de datos mal clasificados (loss), la clase más frecuente (la predicción), y la proporción de datos que hay de cada clase.
 
 Dibujamos el árbol:
