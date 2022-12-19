@@ -83,7 +83,9 @@ output:
 4. Bondad de ajuste
     a. [Bondad del ajuste](poisson_bondadajuste.html) [(pdf)](poisson_bondadajuste.pdf) 
 
-## Árboles de clasificación y de regresión
+## Algoritmos
+
+### Árboles de clasificación y de regresión
 
 1. Árboles de regresión
     a. [Arbol con un regresor](tree_regresion_1regresor.html) [(pdf)](tree_regresion_1regresor.pdf)
@@ -93,7 +95,7 @@ output:
 3. Árboles de clasificación
     a. [Árboles de clasificación](tree_clasificacion.html) [(pdf)](tree_clasificacion.pdf) 
     
-## K - Nearest Neighbours
+### K - Nearest Neighbours
 1. [KNN para clasificiación](knn_clasificiacion.html) [(pdf)](knn_clasificacion.pdf) 
 2. [KNN para regresión](knn_regresion.html) [(pdf)](knn_regresion.pdf) 
 
